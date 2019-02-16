@@ -4,11 +4,11 @@
     <PropertyGroup>
         <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
         <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-        <ProjectGuid>{93138A0C-DDBE-4012-8D54-DF375C3AEC9C}</ProjectGuid>
+        <ProjectGuid>{8DAB4C45-0979-45E1-BB41-F74C6F48DF25}</ProjectGuid>
         <OutputType>Library</OutputType>
         <AppDesignerFolder>Properties</AppDesignerFolder>
-        <RootNamespace>DatabaseHelper</RootNamespace>
-        <AssemblyName>DatabaseHelper</AssemblyName>
+        <RootNamespace>PgsqlHelper</RootNamespace>
+        <AssemblyName>PgsqlHelper</AssemblyName>
         <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
         <FileAlignment>512</FileAlignment>
     </PropertyGroup>
@@ -32,16 +32,11 @@
         <WarningLevel>4</WarningLevel>
     </PropertyGroup>
     <ItemGroup>
-        <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
-          <Private>True</Private>
-        </Reference>
-        <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+        <Reference Include="Npgsql, Version=4.0.4.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7">
+          <HintPath>..\packages\Npgsql.4.0.4\lib\net451\Npgsql.dll</HintPath>
           <Private>True</Private>
         </Reference>
         <Reference Include="System" />
-        <Reference Include="System.ComponentModel.DataAnnotations" />
         <Reference Include="System.Core" />
         <Reference Include="System.Data" />
         <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
@@ -59,13 +54,18 @@
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="BaseDatabaseHelper.cs" />
-        <Compile Include="IDatabaseHelper.cs" />
-        <Compile Include="IEntityMapper.cs" />
+        <Compile Include="PostgreSqlDatabaseHelper.cs" />
+        <Compile Include="PostgreSqlDatabaseHelperForceTransaction.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>
     <ItemGroup>
       <None Include="packages.config" />
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\DatabaseHelper\DatabaseHelper.csproj">
+        <Project>{93138a0c-ddbe-4012-8d54-df375c3aec9c}</Project>
+        <Name>DatabaseHelper</Name>
+      </ProjectReference>
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

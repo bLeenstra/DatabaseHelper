@@ -2,6 +2,10 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseHelper", "DatabaseHelper\DatabaseHelper.csproj", "{93138A0C-DDBE-4012-8D54-DF375C3AEC9C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PgsqlHelper", "PgsqlHelper\PgsqlHelper.csproj", "{8DAB4C45-0979-45E1-BB41-F74C6F48DF25}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLiteHelper", "SQLiteHelper\SQLiteHelper.csproj", "{60233EE7-FF59-44A9-977C-FFE9C00AD412}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +16,13 @@ Global
 		{93138A0C-DDBE-4012-8D54-DF375C3AEC9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{93138A0C-DDBE-4012-8D54-DF375C3AEC9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{93138A0C-DDBE-4012-8D54-DF375C3AEC9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DAB4C45-0979-45E1-BB41-F74C6F48DF25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DAB4C45-0979-45E1-BB41-F74C6F48DF25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DAB4C45-0979-45E1-BB41-F74C6F48DF25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DAB4C45-0979-45E1-BB41-F74C6F48DF25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60233EE7-FF59-44A9-977C-FFE9C00AD412}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60233EE7-FF59-44A9-977C-FFE9C00AD412}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60233EE7-FF59-44A9-977C-FFE9C00AD412}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60233EE7-FF59-44A9-977C-FFE9C00AD412}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
