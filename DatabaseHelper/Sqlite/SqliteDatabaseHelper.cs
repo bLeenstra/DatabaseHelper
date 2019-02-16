@@ -1,40 +1,45 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using Npgsql;
+using System.Data.SQLite;
+using DatabaseHelper.Postgre;
 
-namespace DatabaseHelper.Postgre
+namespace DatabaseHelper.Sqlite
 {
-    public class PostgreSqlDatabaseHelper : BaseDatabaseHelper
+    public class SqliteDatabaseHelper : BaseDatabaseHelper
     {
-        private readonly NpgsqlConnection _connection;
+        private readonly SQLiteConnection _connection;
         private readonly bool _disposeConnection;
-        private NpgsqlTransaction _transaction;
+        private SQLiteTransaction _transaction;
 
-        public PostgreSqlDatabaseHelper(NpgsqlConnection connection)
+        public SqliteDatabaseHelper(SQLiteConnection connection)
         {
             _connection = connection;
             _disposeConnection = false;
         }
 
-        public PostgreSqlDatabaseHelper(NpgsqlConnectionStringBuilder connectionBuilder)
+        public SqliteDatabaseHelper(SQLiteConnectionStringBuilder connectionBuilder)
         {
-            _connection = new NpgsqlConnection(connectionBuilder.ConnectionString);
+            _connection = new SQLiteConnection(connectionBuilder.ConnectionString);
             _disposeConnection = true;
         }
 
-        public PostgreSqlDatabaseHelper(string host, ushort port, string username, string password) : this(
-            new NpgsqlConnectionStringBuilder {Host = host, Port = port, Username = username, Password = password})
-        {
-        }
+        public SqliteDatabaseHelper(string datasource) : this(
+            new SQLiteConnectionStringBuilder { DataSource = datasource, Version = 3 }) {}
+
+        public SqliteDatabaseHelper(string datasource, bool useUtf16Encoding, string password) : this(
+            new SQLiteConnectionStringBuilder { DataSource = datasource, UseUTF16Encoding = useUtf16Encoding, Version = 3, 
+                                                Password = password }){}
+
+
 
         public override bool TransactionBegin()
         {
             ValidateConnection();
             if (_transaction != null)
             {
-                if (!_transaction.IsCompleted) return false;
-                _transaction.Dispose();
+                //already in transaction
+                return false;
             }
 
             _transaction = _connection.BeginTransaction();
@@ -43,14 +48,14 @@ namespace DatabaseHelper.Postgre
 
         public override bool TransactionRollback()
         {
-            if (_transaction == null || _transaction.IsCompleted) return false;
+            if (_transaction == null) return false;
             _transaction.Rollback();
             return true;
         }
 
         public override bool TransactionCommit()
         {
-            if (_transaction == null || _transaction.IsCompleted) return false;
+            if (_transaction == null) return false;
             _transaction.Commit();
             return true;
         }
@@ -81,7 +86,11 @@ namespace DatabaseHelper.Postgre
         /// <exception cref="NotImplementedException"></exception>
         public override long QueryInsertedId(string query, params IDataParameter[] parameters)
         {
-            throw new NotImplementedException();
+            using (var command = CreateCommandExplicit(query, parameters))
+            {
+                command.ExecuteScalar();
+                return command.Connection.LastInsertRowId;
+            }
         }
 
         public override T QueryResultsSingle<T>(string query, params IDataParameter[] parameters)
@@ -134,19 +143,19 @@ namespace DatabaseHelper.Postgre
             }
         }
 
-        protected virtual NpgsqlCommand CreateCommandExplicit(string query, params IDataParameter[] parameters)
+        protected virtual SQLiteCommand CreateCommandExplicit(string query, params IDataParameter[] parameters)
         {
-            return (NpgsqlCommand) CreateCommand(query, parameters);
+            return (SQLiteCommand) CreateCommand(query, parameters);
         }
 
         protected override IDbCommand CreateCommand(string query, params IDataParameter[] parameters)
         {
-            var command = new NpgsqlCommand
+            var command = new SQLiteCommand
             {
                 CommandText = query,
                 Connection = _connection
             };
-            if (_transaction != null && !_transaction.IsCompleted) command.Transaction = _transaction;
+            if (_transaction != null) command.Transaction = _transaction;
             command.Parameters.AddRange(parameters);
             return command;
         }
@@ -161,9 +170,7 @@ namespace DatabaseHelper.Postgre
         protected virtual void Dispose(bool disposing)
         {
             if (_disposeConnection) _connection?.Dispose();
-            if (_transaction == null) return;
-            if (!_transaction.IsCompleted) _transaction.Rollback();
-            _transaction.Dispose();
+            _transaction?.Dispose();
         }
 
         public sealed override void Dispose()
