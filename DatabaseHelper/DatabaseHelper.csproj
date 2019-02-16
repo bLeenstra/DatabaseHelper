@@ -57,6 +57,8 @@
         <Compile Include="BaseDatabaseHelper.cs" />
         <Compile Include="IDatabaseHelper.cs" />
         <Compile Include="IEntityMapper.cs" />
+        <Compile Include="Postgre\PostgreSqlDatabaseHelper.cs" />
+        <Compile Include="Postgre\PostgreSqlDatabaseHelperForceTransaction.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>
     <ItemGroup>
