@@ -75,15 +75,7 @@ namespace DatabaseHelper.Sqlite
                 return command.ExecuteNonQuery();
             }
         }
-
-        /// <summary>
-        ///     PgSQL doesn't have "id's"
-        ///     Use RETURNING After INSERT statements to get last inserted id
-        /// </summary>
-        /// <param name="query"></param>
-        /// <param name="parameters"></param>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
+        
         public override long QueryInsertedId(string query, params IDataParameter[] parameters)
         {
             using (var command = CreateCommandExplicit(query, parameters))
@@ -113,9 +105,9 @@ namespace DatabaseHelper.Sqlite
         /// <summary>
         ///     Runs Query and maps the resulting data to an object
         /// </summary>
-        /// <param name="query">A PgSQL query</param>
+        /// <param name="query">A SQLite query</param>
         /// <param name="entityMapper">Your entity mapper should match the T type</param>
-        /// <param name="parameters">Your PgSQL Params, if any are to be used with your query</param>
+        /// <param name="parameters">Your SQLite Params, if any are to be used with your query</param>
         /// <typeparam name="T">The type of object your entity mapper will map to</typeparam>
         /// <returns>A list of mapped objects</returns>
         public override List<T> QueryResultsEntityMapper<T>(string query, IEntityMapper entityMapper,
