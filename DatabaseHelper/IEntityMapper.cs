@@ -4,6 +4,6 @@ namespace DatabaseHelper
 {
     public interface IEntityMapper
     {
-        object Map(IDataRecord record);
+        T Map<T>(IDataRecord record);
     }
 }

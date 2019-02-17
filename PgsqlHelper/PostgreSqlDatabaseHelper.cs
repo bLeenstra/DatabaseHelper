@@ -107,20 +107,20 @@ namespace DatabaseHelper.Postgre
         /// <param name="query">A PgSQL query</param>
         /// <param name="entityMapper">Your entity mapper should match the T type</param>
         /// <param name="parameters">Your PgSQL Params, if any are to be used with your query</param>
-        /// <typeparam name="T">The type of object your entity mapper will map to</typeparam>
+        /// <typeparam name="TInput">The type of object your entity mapper will map to</typeparam>
         /// <returns>A list of mapped objects</returns>
-        public override List<T> QueryResultsEntityMapper<T>(string query, IEntityMapper entityMapper,
+        public override List<TInput> QueryResultsEntityMapper<TInput>(string query, IEntityMapper entityMapper,
             params IDbDataParameter[] parameters)
         {
             using (var command = CreateCommandExplicit(query, parameters))
             {
                 using (var dataReader = command.ExecuteReader(CommandBehavior.SequentialAccess))
                 {
-                    var results = new List<T>();
+                    var results = new List<TInput>();
                     while (dataReader.Read())
                         try
                         {
-                            var item = (T) entityMapper.Map(dataReader);
+                            var item = (TInput) entityMapper.Map<TInput>(dataReader);
                             results.Add(item);
                         }
                         catch (InvalidCastException e)
