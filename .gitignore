@@ -49,3 +49,8 @@ bld/
 .Trashes
 ehthumbs.db
 Thumbs.db
+/.vs/DatabaseHelper/v15/Server/sqlite3
+/.vs/DatabaseHelper/v15
+/packages/EntityFramework.6.2.0
+/packages/Npgsql.4.0.4
+/packages
