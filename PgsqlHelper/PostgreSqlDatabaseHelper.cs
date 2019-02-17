@@ -79,6 +79,7 @@ namespace DatabaseHelper.Postgre
         /// <param name="parameters"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
+        [Obsolete("Please use QueryResultsEntityMapper", true)]
         public override long QueryInsertedId(string query, params IDataParameter[] parameters)
         {
             throw new NotImplementedException();
