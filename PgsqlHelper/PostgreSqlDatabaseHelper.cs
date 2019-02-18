@@ -121,7 +121,6 @@ namespace DatabaseHelper.Postgre
                     while (dataReader.Read())
                         results.Add(
                                 entityMapper.Map<TInput>(dataReader));
-
                     return results;
                 }
             }

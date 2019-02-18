@@ -4,7 +4,10 @@ Library to help with database usage
 Currently supports PostgreSQL And SQLite
 
 Connect to database with
+
+```csharp
 using(var db = new PLACEDATABASECLASSANDCONTEXTHERE()){}
+```
 
 Use TransactionBegin() / TransactionRollback() / TransactionCommit() to control the transaction state.
 The force transaction copies of the classes will call TransactionBegin automatically
