@@ -54,3 +54,4 @@ Thumbs.db
 /packages/EntityFramework.6.2.0
 /packages/Npgsql.4.0.4
 /packages
+*.json
