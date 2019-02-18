@@ -119,16 +119,8 @@ namespace DatabaseHelper.Postgre
                 {
                     var results = new List<TInput>();
                     while (dataReader.Read())
-                        try
-                        {
-                            var item = (TInput) entityMapper.Map<TInput>(dataReader);
-                            results.Add(item);
-                        }
-                        catch (InvalidCastException e)
-                        {
-                            Console.WriteLine(e);
-                            throw;
-                        }
+                        results.Add(
+                                entityMapper.Map<TInput>(dataReader));
 
                     return results;
                 }
