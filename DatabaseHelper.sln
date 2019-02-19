@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSSQLHelper", "MSSQLHelper\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OdbcDatabaseHelper", "OdbcDatabaseHelper\OdbcDatabaseHelper.csproj", "{4887B820-BBEB-46D1-8D29-EE120DD00B27}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Misc", "Misc\Misc.csproj", "{57190DA1-6566-4FD4-B7D8-17E0B444F402}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseHelperExtension", "DatabaseHelperExtension\DatabaseHelperExtension.csproj", "{57190DA1-6566-4FD4-B7D8-17E0B444F402}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

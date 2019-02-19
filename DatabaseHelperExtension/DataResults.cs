@@ -6,12 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Misc
+namespace DatabaseHelperExtension
 {
     public class DataResults
     {
-        private long _numberRows;
-        public long NumberRows => _numberRows;
+        public long NumberRows { get; private set; }
 
         public Dictionary<string, int> NameIndex = new Dictionary<string, int>();
 
@@ -44,7 +43,7 @@ namespace Misc
                 }
                 dataResults.mysqlRows.AddLast(new DataRecord() { RowIndex = index, parent = dataResults });
             }
-            dataResults._numberRows = dataResults.mysqlRows.Count;
+            dataResults.NumberRows = dataResults.mysqlRows.Count;
             dataResults.currentRow = dataResults.mysqlRows.First;
 
             return dataResults;
