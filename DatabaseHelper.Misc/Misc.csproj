@@ -7,8 +7,8 @@
     <ProjectGuid>{57190DA1-6566-4FD4-B7D8-17E0B444F402}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DatabaseHelper.Misc</RootNamespace>
-    <AssemblyName>DatabaseHelper.Misc</AssemblyName>
+    <RootNamespace>Misc</RootNamespace>
+    <AssemblyName>Misc</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
