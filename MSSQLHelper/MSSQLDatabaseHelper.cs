@@ -1,32 +1,32 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using MySql.Data.MySqlClient;
+using System.Data.SqlClient;
 
 namespace DatabaseHelper.MSSql
 {
-    public class MySqlDatabaseHelper : BaseDatabaseHelper
+    public class MSSQLDatabaseHelper : BaseDatabaseHelper
     {
-        private readonly MySqlConnection _connection;
+        private readonly SqlConnection _connection;
         private readonly bool _disposeConnection;
-        private MySqlTransaction _transaction;
+        private SqlTransaction _transaction;
 
         public bool IsComplete = false;
 
-        public MySqlDatabaseHelper(MySqlConnection connection)
+        public MSSQLDatabaseHelper(SqlConnection connection)
         {
             _connection = connection;
             _disposeConnection = false;
         }
 
-        public MySqlDatabaseHelper(MySqlConnectionStringBuilder connectionBuilder)
+        public MSSQLDatabaseHelper(SqlConnectionStringBuilder connectionBuilder)
         {
-            _connection = new MySqlConnection(connectionBuilder.ConnectionString);
+            _connection = new SqlConnection(connectionBuilder.ConnectionString);
             _disposeConnection = true;
         }
 
-        public MySqlDatabaseHelper(string host, ushort port, string username, string password) : this(
-            new MySqlConnectionStringBuilder { Server = host, Port = port, UserID = username, Password = password})
+        public MSSQLDatabaseHelper(string host, ushort port, string username, string password) : this(
+            new SqlConnectionStringBuilder { DataSource = $"{host},{port}", UserID = username, Password = password})
         {
         }
 
@@ -79,8 +79,7 @@ namespace DatabaseHelper.MSSql
         {
             using (var command = CreateCommandExplicit(query, parameters))
             {
-                command.ExecuteNonQuery();
-                return command.LastInsertedId;
+                return (long)command.ExecuteScalar();                
             }
         }
 
@@ -125,14 +124,14 @@ namespace DatabaseHelper.MSSql
             }
         }
 
-        protected virtual MySqlCommand CreateCommandExplicit(string query, params IDataParameter[] parameters)
+        protected virtual SqlCommand CreateCommandExplicit(string query, params IDataParameter[] parameters)
         {
-            return (MySqlCommand) CreateCommand(query, parameters);
+            return (SqlCommand) CreateCommand(query, parameters);
         }
 
         protected override IDbCommand CreateCommand(string query, params IDataParameter[] parameters)
         {
-            var command = new MySqlCommand
+            var command = new SqlCommand
             {
                 CommandText = query,
                 Connection = _connection

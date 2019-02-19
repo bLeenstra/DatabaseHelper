@@ -2,7 +2,7 @@ using System.Data;
 using MySql;
 using MySql.Data.MySqlClient;
 
-namespace DatabaseHelper.Mysql
+namespace DatabaseHelper.MSSql
 {
     public sealed class MySqlSqlDatabaseHelperForceTransaction : MySqlDatabaseHelper
     {

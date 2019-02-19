@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLiteHelper", "SQLiteHelpe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MysqlHelper", "MysqlHelper\MysqlHelper.csproj", "{709C259C-94C5-4CF9-A57F-14D1BDAEBB24}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSSQLHelper", "MSSQLHelper\MSSQLHelper.csproj", "{B15271C1-6038-4973-9BA5-22F512BC3C85}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{709C259C-94C5-4CF9-A57F-14D1BDAEBB24}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{709C259C-94C5-4CF9-A57F-14D1BDAEBB24}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{709C259C-94C5-4CF9-A57F-14D1BDAEBB24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B15271C1-6038-4973-9BA5-22F512BC3C85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B15271C1-6038-4973-9BA5-22F512BC3C85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B15271C1-6038-4973-9BA5-22F512BC3C85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B15271C1-6038-4973-9BA5-22F512BC3C85}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
