@@ -67,14 +67,19 @@ namespace DatabaseHelper.Odbc
                 return command.ExecuteNonQuery();
             }
         }
-        
+
+        /// <summary>
+        ///     ODBC driver doesnt support lastinsertedid
+        ///     Use Entity mapper instead
+        /// </summary>
+        /// <param name="query"></param>
+        /// <param name="parameters"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        [Obsolete("Please use QueryResultsEntityMapper", true)]
         public override long QueryInsertedId(string query, params IDataParameter[] parameters)
         {
-            using (var command = CreateCommandExplicit(query, parameters))
-            {
-                command.ExecuteScalar();
-                return command.Connection.LastInsertRowId;
-            }
+            throw new NotImplementedException();
         }
 
         public override T QueryResultsSingle<T>(string query, params IDataParameter[] parameters)
