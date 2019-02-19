@@ -16,6 +16,25 @@ namespace DatabaseHelper.Misc
             return dataRecord != null;
         }
 
+        public T Get<T>(int index)
+        {
+            return (T)this[index];
+        }
+        public object Get(int index)
+        {
+            return this[index];
+        }
+
+        public T Get<T>(string name)
+        {
+            return (T)this[name];
+        }
+
+        public object Get(string name)
+        {
+            return this[name];
+        }
+
         public object this[int index]
         {
             get
